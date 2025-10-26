@@ -4,9 +4,9 @@
   "channel": "https://repo.anaconda.com/pkgs/main/win-64",
   "constrains": [],
   "depends": [
-    "python >=3.11,<3.12.0a0",
     "setuptools",
-    "wheel"
+    "wheel",
+    "python >=3.11,<3.12.0a0"
   ],
   "extracted_package_dir": "C:\\Users\\Parandhama.Reddy\\anaconda\\pkgs\\pip-25.0-py311haa95532_0",
   "files": [

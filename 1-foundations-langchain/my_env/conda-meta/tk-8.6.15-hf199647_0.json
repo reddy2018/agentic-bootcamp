@@ -5,8 +5,8 @@
   "constrains": [],
   "depends": [
     "ucrt >=10.0.20348.0",
-    "vc >=14.2,<15",
     "vc14_runtime >=14.29.30133",
+    "vc >=14.2,<15",
     "zlib >=1.2.13,<2.0.0a0"
   ],
   "extracted_package_dir": "C:\\Users\\Parandhama.Reddy\\anaconda\\pkgs\\tk-8.6.15-hf199647_0",

@@ -32,7 +32,7 @@ template = PromptTemplate.from_template(
 )
 
 template_object = template.invoke(
-    {"context": "Sweden is a country in Northern Europe.",
+    {"context": "the capital of Sweden is Stockholm.",
     "question":"What is the capital of Sweden?"}
 )
 
@@ -41,9 +41,11 @@ template_object = template.invoke(
 
 # message = [human_msg, system_msg]
 
-question = llm.invoke(template_object)
+#question = llm.invoke(template_object)
 response = llm.invoke(template_object)
-
+response1 = llm.invoke("What is the capital of India?") #this is direct question without context which will be answered by the model
+ 
 print("Response from gpt-4o:")
-print(question)
+#print(question)
 print(response)
+print(response1)

@@ -7,8 +7,8 @@
   ],
   "depends": [
     "ucrt >=10.0.20348.0",
-    "vc >=14.2,<15",
-    "vc14_runtime >=14.29.30133"
+    "vc14_runtime >=14.29.30133",
+    "vc >=14.2,<15"
   ],
   "extracted_package_dir": "C:\\Users\\Parandhama.Reddy\\anaconda\\pkgs\\libzlib-1.3.1-h02ab6af_0",
   "files": [
