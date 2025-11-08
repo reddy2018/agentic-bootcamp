@@ -22,12 +22,13 @@ llm = ChatOpenAI(
     # other params...
 )
 
-
+# Define the graph state structure
+# this defines what kind of data your graph state should hold
 class GraphState(TypedDict):
     """
     input: latest user input
     summary: rolling summary of the conversation
-    messages: ordered list of all messages exchanged
+    messages: ordered list of all messages exchanged # chart history
     """
     input: str
     summary: Optional[str]
@@ -41,6 +42,9 @@ def ingest_user(state: GraphState) -> GraphState:
     state["messages"] = messages
     return state
 
+# at the starting
+# messages = []
+# messages = [HumanMessage(content="user input here")]
 # chat node
 def chat(state: GraphState) -> GraphState:
     messages = list(state.get("messages", []))
@@ -57,13 +61,14 @@ def chat(state: GraphState) -> GraphState:
     return state
 
 
-# update summary node
+
 summary_prompt = ChatPromptTemplate.from_messages([
     SystemMessage(content="You are an expert at creating concise summaries of conversations."),
     HumanMessage(content="Given the following conversation history, provide a concise summany by focusing on key facts, preference and decisions: \n{conversation_history}")
 ])
 THRESHOLD = 2 # minimum number of messages to trigger summary update
 
+# update summary node
 def summarize_if_long(state: GraphState) -> GraphState:
     messages = list(state.get("messages", []))
     summary = state.get("summary", "")
@@ -122,4 +127,5 @@ if __name__ == "__main__":
     print("\nPersistent storage content:")
     print("summary:",s3.get("summary"))
     
-    
+    # export the graph visualization
+    app.get_graph().draw_mermaid_png(output_file_path="memory_hands_on_graph.png")
