@@ -9,3 +9,4 @@ langchain-community
 #langchain_google_genai
 python-dotenv
 
+langchain_redis
