@@ -8,5 +8,5 @@ wikipedia
 langchain-community
 #langchain_google_genai
 python-dotenv
-
+fastapi
 langchain_redis

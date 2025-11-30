@@ -6,3 +6,5 @@ DEFAULT_MODEL = "gpt-4o"
 TEMPERATURE = 0.2
 MAX_TOKENS = 512
 
+# cache settings
+CACHE_TTL_SECONDS = 3600  # 1 hour
