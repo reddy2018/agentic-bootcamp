@@ -15,6 +15,7 @@ from llm_client import call_llm
 from cache_store import get, set
 from postprocess import secured_output
 from guardrails import apply_guardrails
+from observability import start_metrics_server, log, record_metrics
 
 # --------------------------------------------------------
 # RAG PIPELINE MAIN MODULE
@@ -61,6 +62,7 @@ def run_rag_pipeline(question: str) -> str:
     # Step 4: Cache the answer
     set(question, answer)
     logging.info("Answer cached for future requests.")
+    log(question, prompt, answer) # Log the request and response
 
     return answer
 
@@ -86,7 +88,7 @@ def run_rag_pipeline(question: str) -> str:
 # COMMAND LINE INTERFACE
 # --------------------------------------------------------
 if __name__ == "__main__":
-    
+    start_metrics_server()
     #parser = argparse.ArgumentParser(description="Run RAG Pipeline")
     #parser.add_argument("--question", type=str, required=True, help="The question to ask the RAG pipeline")
     #args = parser.parse_args()
@@ -98,3 +100,11 @@ if __name__ == "__main__":
 
     answer = run_rag_pipeline(args.question)
     print("Answer:", answer)
+    logging.info(f"Final Answer: {answer}")
+    print("pipeline execution completed.")
+    print("keeping the metric server running at http://localhost:8000/metrics")
+    try:
+        while True:
+            time.sleep(10)
+    except KeyboardInterrupt:
+        print("Shutting down metric server.")
